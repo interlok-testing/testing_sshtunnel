@@ -17,7 +17,7 @@ Uses a ssh tunnel to expose the MariaDB instance on _agbqhsbldd013v.agb.rbxd.ds 
 
 
 ```
-$ ./gradlew assemble
+$ ./gradlew clean build
 $ (cd build/distribution && java -jar lib/interlok-boot.jar)
 ...
 TRACE [SimpleBootstrap] [c.a.m.s.Tunnel._connect()] [{}] Trying to connect to agbqhsbldd013v.agb.rbxd.ds:22 as jenkins
