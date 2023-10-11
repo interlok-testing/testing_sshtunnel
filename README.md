@@ -1,4 +1,7 @@
-# sshtunnel-testing
+# SSH Tunnel Testing
+
+[![license](https://img.shields.io/github/license/interlok-testing/testing_sshtunnel.svg)](https://github.com/interlok-testing/testing_sshtunnel/blob/develop/LICENSE)
+[![Actions Status](https://github.com/interlok-testing/testing_sshtunnel/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/interlok-testing/testing_sshtunnel/actions/workflows/gradle-build.yml)
 
 Uses a ssh tunnel to expose the MariaDB instance on _agbqhsbldd013v.agb.rbxd.ds (10.52.104.139)_
 

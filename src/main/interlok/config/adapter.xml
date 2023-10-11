@@ -70,7 +70,6 @@
           <producer class="null-message-producer">
             <unique-id>goofy-chandrasekhar</unique-id>
           </producer>
-          <produce-exception-handler class="null-produce-exception-handler"/>
           <unique-id>liverpool_transfers</unique-id>
           <message-metrics-interceptor>
             <unique-id>liverpool_transfers-MessageMetrics</unique-id>
