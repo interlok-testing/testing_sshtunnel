@@ -1,0 +1,42 @@
+version: '3.9'
+services:
+  interlok:
+    build:
+      context: .
+      dockerfile: dockerfile
+    environment:
+      JAVA_OPTS:
+    hostname: 'interlok-1'
+    depends_on:
+      sshtunnel:
+        condition: service_healthy
+
+  #    ports:
+#      - 80
+#      - 5555
+  sshtunnel:
+    build:
+      context: .
+      dockerfile: dockerfile-ssh-mariadb
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Etc/UTC
+      MARIADB_USER: terry.chung
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 1
+      MARIADB_PASSWORD: password
+      MARIADB_DATABASE: interlok_jenkins
+    hostname: 'sshtunnel-1'
+    volumes:
+      - /keys
+      - /scripts
+      - /var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh", "--connect", "--innodb_initialized" ]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+#    ports:
+#      - "3306:3306"
+#      - "22:22"

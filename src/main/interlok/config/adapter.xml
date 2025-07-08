@@ -6,9 +6,9 @@
     <connections>
       <jdbc-pooled-connection>
         <unique-id>local-mariadb</unique-id>
-        <username>jenkins</username>
-        <password>AES_GCM:I8pdTdg77wtVAAykB8G8IeuQN/HhoM8ZzDpbYh+aQbKvvBEv6l1oIecxjhewEgNDZbcAAw==</password>
-        <connect-url>jdbc:mariadb://localhost:3306/interlok_jenkins?useSSL=false</connect-url>
+        <username>terry.chung</username>
+        <password>password</password>
+        <connect-url>jdbc:mariadb://sshtunnel-1:3306/interlok_jenkins?useSSL=false</connect-url>
       </jdbc-pooled-connection>
     </connections>
     <services/>
