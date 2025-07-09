@@ -1,5 +1,4 @@
 FROM mariadb:latest
-VOLUME /scripts
 COPY ./src/main/interlok/scripts/setup.sql /docker-entrypoint-initdb.d/setup.sql
 COPY ./src/main/interlok/scripts/setup.sh /docker-entrypoint-initdb.d/setup.sh
 VOLUME /keys
