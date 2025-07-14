@@ -1,13 +1,14 @@
 ext {
-  interlokParentGradle = "https://raw.githubusercontent.com/adaptris/interlok-build-parent/main/v5/build.gradle"
-  interlokVersion = '5.0-SNAPSHOT'
+  testingCommonGradle = "https://raw.githubusercontent.com/interlok-testing/testing_common/refs/heads/master/common.gradle?timestamp=${new Date().getTime()}"
+//  testingCommonGradle = "../testing_common/common.gradle"
+  interlokTestingVersion = "0.1"
   additionalTemplatedProperties = [
-    'bootstrap'
+          'bootstrap'
   ]
 }
 
 allprojects {
-  apply from: "${interlokParentGradle}"
+  apply from: "${testingCommonGradle}"
 }
 
 configurations.all {
@@ -23,4 +24,11 @@ dependencies {
   interlokJavadocs group: "com.adaptris", name: "interlok-apache-http", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
   interlokJavadocs group: "com.adaptris", name: "interlok-json", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
 
+  testImplementation ("com.adaptris:interlok-sshtunnel:$interlokVersion") { changing=true }
+  testImplementation group: "com.adaptris", name: "interlok-testing-common", version: "$interlokTestingVersion"
+
+}
+
+tasks.named('functionalTest', Test) {
+  workingDir = "$projectDir"
 }

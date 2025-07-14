@@ -1,0 +1,19 @@
+FROM mariadb:latest
+COPY ./src/main/interlok/scripts/setup.sql /docker-entrypoint-initdb.d/setup.sql
+COPY ./src/main/interlok/scripts/setup.sh /docker-entrypoint-initdb.d/setup.sh
+VOLUME /keys
+COPY ./src/main/interlok/.ssh/id_ed25519.pub /keys/authorized_keys
+RUN apt-get update && apt-get install -y \
+            openssh-server\
+            sudo \
+            vim
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 terry.chung
+RUN echo 'terry.chung:password' | chpasswd
+RUN mkdir ~terry.chung/.ssh && cp /keys/authorized_keys ~terry.chung/.ssh
+RUN chmod -R a+r ~terry.chung
+RUN service ssh start
+RUN service ssh stop
+RUN usermod -aG sudo mysql
+RUN echo "mysql ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+EXPOSE 3306
+EXPOSE 22
